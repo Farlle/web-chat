@@ -30,7 +30,6 @@ public class ShowChatPageCommand implements Command {
             request.getServletContext().setAttribute("messages", messages);
         }
 
-        // Добавляем новое сообщение в список
         messages.add(message);
 
         return new ForwardResult(PAGE_CHAT);

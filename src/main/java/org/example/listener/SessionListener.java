@@ -13,7 +13,7 @@ public class SessionListener implements HttpSessionListener {
 
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
-        User sessionUser = (User) event.getSession().getAttribute("user");
+        User sessionUser = (User) event.getSession().getAttribute("loginInput");
 
         if (sessionUser != null) {
             sessionUser.setOnline(false);

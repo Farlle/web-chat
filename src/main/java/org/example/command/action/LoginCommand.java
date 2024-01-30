@@ -17,6 +17,8 @@ public class LoginCommand implements Command {
 
     @Override
     public Result execute(HttpServletRequest request, HttpServletResponse response) {
+
+
         String username = request.getParameter("loginInput");
         String password = request.getParameter("passwordInput");
 
@@ -24,6 +26,8 @@ public class LoginCommand implements Command {
             System.out.println("Успех!");
             request.getSession().setAttribute("loginInput", username);
             return new RedirectResult(COMMAND_SHOW_CHAT_PAGE);
+
+
         }
 
         // Ваша реализация выполнения входа в Чат

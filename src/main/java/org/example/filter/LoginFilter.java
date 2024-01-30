@@ -7,9 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static org.example.Resources.COMMAND_SHOW_LOGIN_PAGE;
 import static org.example.Resources.PAGE_LOGIN;
 
 public class LoginFilter implements Filter {
@@ -20,31 +22,20 @@ public class LoginFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws IOException, ServletException {
+        HttpServletRequest httpRequest = (HttpServletRequest) request;
+        HttpServletResponse httpResponse = (HttpServletResponse) response;
+        HttpSession session = httpRequest.getSession(false);
 
-        // Ваша релизация фильтра входа пользователя на сайт
+        boolean isChatPageRequest = "/chat".equals(httpRequest.getServletPath()) &&
+                "show_chat_page".equals(httpRequest.getParameter("command"));
 
-//
-//        HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-//        HttpSession session = httpServletRequest.getSession(false);
-//
-//        boolean isLoggedIn = (session != null && session.getAttribute("usernameLogin") != null);
-//
-//        if (!isLoggedIn) {
-//            httpServletRequest.getRequestDispatcher(PAGE_LOGIN).forward(request, response);
-//            return;
-//        }
-//
-//        filterChain.doFilter(request, response);
-//    }
+        boolean isLoggedIn = (session != null && session.getAttribute("loginInput") != null);
 
-
-        if (true) { // Проверка, что пользователь авторизован (необходимо реализовать!!!)
-            HttpServletRequest httpServletRequest = (HttpServletRequest) request;
-            httpServletRequest.getRequestDispatcher(PAGE_LOGIN).forward(request, response);
-            return;
+        if (isChatPageRequest && !isLoggedIn) {
+            httpResponse.sendRedirect(COMMAND_SHOW_LOGIN_PAGE);
         }
-
         filterChain.doFilter(request, response);
+
     }
 
     @Override

@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<!DOCTYPE suppressions PUBLIC
-        "-//Puppy Crawl//DTD Suppressions 1.1//EN"
-        "http://www.puppycrawl.com/dtds/suppressions_1.1.dtd">
-
-<suppressions>
-    <suppress checks="RightCurly" files="*.java" tokens="LITERAL_SWITCH" message="Этот оператор `switch` не требует закрывающей фигурной скобки"/>
-</suppressions>

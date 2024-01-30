@@ -14,6 +14,20 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>ChatFilter</filter-name>
+        <filter-class>org.example.filter.LoginFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>ChatFilter</filter-name>
+        <url-pattern>/chat</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.example.listener.SessionListener</listener-class>
+    </listener>
+
     <!-- Необходимо подключить LoginFilter и SessionListener -->
 
 </web-app>
