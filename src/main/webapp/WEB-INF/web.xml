@@ -18,9 +18,17 @@
         <filter-name>ChatFilter</filter-name>
         <filter-class>org.example.filter.LoginFilter</filter-class>
     </filter>
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>org.example.filter.BanFilter</filter-class>
+    </filter>
 
     <filter-mapping>
         <filter-name>ChatFilter</filter-name>
+        <url-pattern>/chat</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
         <url-pattern>/chat</url-pattern>
     </filter-mapping>
 

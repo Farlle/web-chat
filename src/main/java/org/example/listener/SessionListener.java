@@ -18,7 +18,7 @@ public class SessionListener implements HttpSessionListener {
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
 
-        HashMap<String,User> userMap = getUserMap();
+        HashMap<String, User> userMap = getUserMap();
         String userLog = (String) event.getSession().getAttribute("loginInput");
         User sessionUser = (User) userMap.get(userLog);
 

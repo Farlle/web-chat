@@ -19,11 +19,11 @@ public class BanCommand implements Command {
         HashMap<String, User> userMap = getUserMap();
 
 
-        if (userMap.containsKey(userLogin)){
+        if (userMap.containsKey(userLogin)) {
             User bannedUser = userMap.get(userLogin);
-            if(!bannedUser.isBanned()){
+            if (!bannedUser.isBanned()) {
                 bannedUser.setBanned(true);
-            }else {
+            } else {
                 bannedUser.setBanned(false);
             }
         }

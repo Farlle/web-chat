@@ -11,16 +11,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.Resources.PAGE_CHAT;
+
+
 public class ShowChatPageCommand implements Command {
 
     @Override
     public Result execute(HttpServletRequest request, HttpServletResponse response) {
         String text = request.getParameter("message");
         String user = request.getParameter("sender");
-
-        if (text == null || text.isEmpty()) {
-            return new ForwardResult(PAGE_CHAT);
-        }
 
         Message message = new Message(user, text);
         List<Message> messages = (List<Message>) request.getServletContext().getAttribute("messages");

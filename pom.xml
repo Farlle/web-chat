@@ -30,11 +30,11 @@
             <scope>provided</scope>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>com.puppycrawl.tools</groupId>-->
-<!--            <artifactId>checkstyle</artifactId>-->
-<!--            <version>10.9.1</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>com.puppycrawl.tools</groupId>
+            <artifactId>checkstyle</artifactId>
+            <version>10.9.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -44,28 +44,33 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.4.30.v20200611</version>
                 <configuration>
-                    <scanIntervalSeconds>5</scanIntervalSeconds>
-             </configuration>
+                    <scanIntervalSeconds>60</scanIntervalSeconds>
+                </configuration>
                 <!-- Можно добавлять свои настройки, например, scanIntervalSeconds и т.д. -->
             </plugin>
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-checkstyle-plugin</artifactId>-->
-<!--                <version>3.3.1</version>-->
-<!--                <configuration>-->
-<!--                    <configLocation>checkstyle.xml</configLocation>-->
-<!--                    <failsOnError>true</failsOnError>-->
-<!--                </configuration>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>checkstyle</id>-->
-<!--                        <phase>validate</phase>-->
-<!--                        <goals>-->
-<!--                            <goal>check</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>true</failsOnError>
+                    <failOnViolation>true</failOnViolation>
+                    <violationSeverity>warning</violationSeverity>
+                    <configLocation>checkstyle.xml</configLocation>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>checkstyle</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 
             <!-- Необходимо подключить maven-checkstyle-plugin -->
             <!-- И настроить его так, чтобы сборка проекта падала при обнаружении ошибок !!! -->

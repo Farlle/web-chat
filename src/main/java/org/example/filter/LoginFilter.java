@@ -26,14 +26,18 @@ public class LoginFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) response;
         HttpSession session = httpRequest.getSession(false);
 
-        boolean isChatPageRequest = "/chat".equals(httpRequest.getServletPath()) &&
-                "show_chat_page".equals(httpRequest.getParameter("command"));
+        boolean isChatPageRequest = "/chat".equals(httpRequest.getServletPath())
+                && "show_chat_page".equals(httpRequest.getParameter("command"));
+
+        boolean isBanPageRequest = "/chat".equals(httpRequest.getServletPath())
+                && "show_ban_page".equals(httpRequest.getParameter("command"));
 
         boolean isLoggedIn = (session != null && session.getAttribute("loginInput") != null);
 
-        if (isChatPageRequest && !isLoggedIn) {
+        if (isChatPageRequest && !isLoggedIn || isBanPageRequest && !isLoggedIn) {
             httpResponse.sendRedirect(COMMAND_SHOW_LOGIN_PAGE);
         }
+        System.out.println("loginFilter ok");
         filterChain.doFilter(request, response);
 
     }
