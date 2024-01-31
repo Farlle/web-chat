@@ -5,6 +5,8 @@ import org.example.data.User;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
+import static org.example.data.DataBase.userMap;
+
 public class SessionListener implements HttpSessionListener {
 
     @Override
@@ -13,7 +15,8 @@ public class SessionListener implements HttpSessionListener {
 
     @Override
     public void sessionDestroyed(HttpSessionEvent event) {
-        User sessionUser = (User) event.getSession().getAttribute("loginInput");
+        String userLog = (String) event.getSession().getAttribute("loginInput");
+        User sessionUser = (User) userMap.get(userLog);
 
         if (sessionUser != null) {
             sessionUser.setOnline(false);

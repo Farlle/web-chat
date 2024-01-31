@@ -17,14 +17,16 @@ public class ShowChatPageCommand implements Command {
 
     @Override
     public Result execute(HttpServletRequest request, HttpServletResponse response) {
-        String text = request.getParameter("message1");
+        String text = request.getParameter("message");
         String user = request.getParameter("sender");
+
+        if (text == null || text.isEmpty()) {
+            return new ForwardResult(PAGE_CHAT);
+        }
+
         Message message = new Message(user, text);
-
-        System.out.println(text + "\n" + user);
-        // Ваша реализация наполнения данными главной страницы чата
-
         List<Message> messages = (List<Message>) request.getServletContext().getAttribute("messages");
+
         if (messages == null) {
             messages = new ArrayList<>();
             request.getServletContext().setAttribute("messages", messages);

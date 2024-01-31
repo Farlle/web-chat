@@ -21,22 +21,28 @@
         </style>
     </head>
     <body>
+
+
+
+    </div>
+    <a href="chat?command=logout" name = "logout">Выход</a>
         <div align="center">
-            <a href="chat?command=logout">Выход</a>
+
+
             <p>Вы вошли как: <c:out value="${loginInput}" /></p>
 
             <!-- Главная страница Чата -->
             <div id="chat-window">
-                <!-- Сообщения будут добавляться здесь -->
-               <div id="chat-window">
-                               <c:forEach var="message" items="${applicationScope.messages}">
-                                   <div><c:out value="${message.sender}: ${message.text}" /></div>
-                               </c:forEach>
-                           </div>
+                <c:forEach var="message" items="${messages}">
+                       <c:if test="${not empty message.text}">
+                           <div><c:out value="${message.sender}: ${message.text}" /></div>
+                       </c:if>
+                  </c:forEach>
+                  </div>
             <form id="chat-form" action="chat?command=show_chat_page" method="POST">
                 <input type="hidden" name="command" value="send">
                 <input type="hidden" name="sender" value="${loginInput}">
-                <input type="text" id="message-input" name="message1" placeholder="Type a message..." autocomplete="off">
+                <input type="text" id="message-input" name="message" placeholder="Type a message..." autocomplete="off">
                 <button type="submit">Send</button>
             </form>
         </div>

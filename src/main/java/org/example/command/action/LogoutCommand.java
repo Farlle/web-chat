@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import static org.example.Resources.PAGE_LOGIN;
+import static org.example.data.DataBase.userMap;
 
 public class LogoutCommand implements Command {
 
     @Override
     public Result execute(HttpServletRequest request, HttpServletResponse response) {
+        String userLog = (String) request.getSession().getAttribute("loginInput");
+        User user = (User) userMap.get(userLog);
 
-        User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
             request.getSession().invalidate();
         }

@@ -2,6 +2,7 @@ package org.example.command.action;
 
 import org.example.command.Command;
 import org.example.data.DataBase;
+import org.example.data.User;
 import org.example.result.RedirectResult;
 import org.example.result.Result;
 
@@ -18,20 +19,19 @@ public class LoginCommand implements Command {
     @Override
     public Result execute(HttpServletRequest request, HttpServletResponse response) {
 
-
         String username = request.getParameter("loginInput");
         String password = request.getParameter("passwordInput");
 
+
         if (userMap.containsKey(username)) {
-            System.out.println("Успех!");
-            request.getSession().setAttribute("loginInput", username);
-            return new RedirectResult(COMMAND_SHOW_CHAT_PAGE);
-
-
+            User user = (User) userMap.get(username);
+            if (password.equals(user.getPassword())) {
+                user.setOnline(true);
+                request.getSession().setAttribute("loginInput", username);
+                return new RedirectResult(COMMAND_SHOW_CHAT_PAGE);
+            }
         }
-
         // Ваша реализация выполнения входа в Чат
-        System.out.println(username + "/n" + password + "asd");
         return new RedirectResult(COMMAND_SHOW_LOGIN_PAGE);
     }
 }
