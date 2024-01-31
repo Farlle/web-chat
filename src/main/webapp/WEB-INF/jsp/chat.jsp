@@ -43,8 +43,11 @@
                 <input type="hidden" name="command" value="send">
                 <input type="hidden" name="sender" value="${loginInput}">
                 <input type="text" id="message-input" name="message" placeholder="Type a message..." autocomplete="off">
-                <button type="submit">Send</button>
+                <button type="submit" <c:if test="${user.banned}">disabled</c:if>>Send</button>
             </form>
+             <c:if test="${user.userType == 'ADMIN'}">
+                <a href="chat?command=show_ban_page">Ban Page</a>
+             </c:if>
         </div>
     </body>
 </html>

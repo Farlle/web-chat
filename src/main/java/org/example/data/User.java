@@ -7,6 +7,7 @@ public class User {
     private final String name;
     private final UserType userType;
     private boolean online = false;
+    private boolean banned = false;
 
     public User(String login, String password, String name, UserType userType) {
         this.login = login;
@@ -37,5 +38,13 @@ public class User {
 
     public void setOnline(boolean online) {
         this.online = online;
+    }
+
+    public boolean isBanned() {
+        return banned;
+    }
+
+    public void setBanned(boolean banned) {
+        this.banned = banned;
     }
 }

@@ -11,9 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.example.Resources.PAGE_CHAT;
-
 public class ShowChatPageCommand implements Command {
-    List<Message> messages;
 
     @Override
     public Result execute(HttpServletRequest request, HttpServletResponse response) {
