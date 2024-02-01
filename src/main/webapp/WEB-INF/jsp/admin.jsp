@@ -6,6 +6,8 @@
 </head>
 <body>
 <a href="chat?command=logout" name = "logout">Выход</a>
+</br>
+<a href="chat?command=show_chat_page" name = "backChat">Вернуться в чат</a>
     <h1>User List</h1>
     <c:forEach var="user" items="${allUsers}">
         <c:out value ="Username: ${user.name}, Ban: ${user.banned} Type:${user.userType}"/>
