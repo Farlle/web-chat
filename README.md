@@ -6,6 +6,6 @@
 
 для запуска mvn jetty:run
 
-**админ: login: sashok, password: 123 \n
-юзер:  login: oleg, password: 123 \n
-юзер:  login: dima, password: 123** \n
+**админ: login: sashok, password: 123 /n
+юзер:  login: oleg, password: 123 /n
+юзер:  login: dima, password: 123** /n
