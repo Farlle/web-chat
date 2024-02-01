@@ -24,16 +24,17 @@ public class LoginCommand implements Command {
 
         HashMap<String, User> userMap = getUserMap();
 
-        if (userMap.containsKey(username)) {
-            User user = userMap.get(username);
-            if (password.equals(user.getPassword())) {
-                user.setOnline(true);
-                request.getSession().setAttribute("loginInput", username);
-                request.getSession().setAttribute("user", user);
-                return new RedirectResult(COMMAND_SHOW_CHAT_PAGE);
-            }
+        if (!userMap.containsKey(username)) {
+            return new RedirectResult(COMMAND_SHOW_LOGIN_PAGE);
         }
-        // Ваша реализация выполнения входа в Чат
-        return new RedirectResult(COMMAND_SHOW_LOGIN_PAGE);
+        User user = userMap.get(username);
+        if (password.equals(user.getPassword()) && user.isOnline() == false) {
+            user.setOnline(true);
+            request.getSession().setAttribute("loginInput", username);
+            request.getSession().setAttribute("user", user);
+            return new RedirectResult(COMMAND_SHOW_CHAT_PAGE);
+        }
+        return new RedirectResult(COMMAND_SHOW_CHAT_PAGE);
+
     }
 }

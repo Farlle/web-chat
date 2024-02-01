@@ -36,8 +36,8 @@ public class LoginFilter implements Filter {
 
         if (isChatPageRequest && !isLoggedIn || isBanPageRequest && !isLoggedIn) {
             httpResponse.sendRedirect(COMMAND_SHOW_LOGIN_PAGE);
+            return;
         }
-        System.out.println("loginFilter ok");
         filterChain.doFilter(request, response);
 
     }

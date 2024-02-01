@@ -18,9 +18,9 @@
                     </c:if>
                     <c:if test="${user.banned}">
                          <button type="submit">UNBAN</button>
-                    </c:if>
+                    </c:if >
                  </form>
-              </div>
+            </div>
 
     </c:forEach>
 

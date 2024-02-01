@@ -20,7 +20,7 @@ public class SessionListener implements HttpSessionListener {
 
         HashMap<String, User> userMap = getUserMap();
         String userLog = (String) event.getSession().getAttribute("loginInput");
-        User sessionUser = (User) userMap.get(userLog);
+        User sessionUser = userMap.get(userLog);
 
         if (sessionUser != null) {
             sessionUser.setOnline(false);

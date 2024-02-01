@@ -27,11 +27,8 @@
     </div>
     <a href="chat?command=logout" name = "logout">Выход</a>
         <div align="center">
-
-
             <p>Вы вошли как: <c:out value="${loginInput}" /></p>
 
-            <!-- Главная страница Чата -->
             <div id="chat-window">
                 <c:forEach var="message" items="${messages}">
                        <c:if test="${not empty message.text}">
@@ -42,7 +39,9 @@
             <form id="chat-form" action="chat?command=show_chat_page" method="POST">
                 <input type="hidden" name="command" value="send">
                 <input type="hidden" name="sender" value="${loginInput}">
-                <input type="text" id="message-input" name="message" placeholder="Type a message..." autocomplete="off">
+                <input type="text" id="message-input" name="message" placeholder="Type a message..." autocomplete="off"
+                value="<c:out value='${sessionScope.tmpMessage}'/>">
+
                 <button type="submit" <c:if test="${user.banned}">disabled</c:if>>Send</button>
             </form>
              <c:if test="${user.userType == 'ADMIN'}">

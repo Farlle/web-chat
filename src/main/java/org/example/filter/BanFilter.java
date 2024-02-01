@@ -33,15 +33,25 @@ public class BanFilter implements Filter {
         HttpServletResponse httpResponse = (HttpServletResponse) servletResponse;
         HttpSession session = httpRequest.getSession(false);
 
-        HashMap<String, User> userMap = getUserMap();
-        String userLog = (String) session.getAttribute("loginInput");
-        User sessionUser = userMap.get(userLog);
-
         boolean isBanPageRequest = "/chat".equals(httpRequest.getServletPath())
                 && "show_ban_page".equals(httpRequest.getParameter("command"));
 
-        if (isBanPageRequest && sessionUser.getUserType() != UserType.ADMIN) {
-            httpResponse.sendRedirect(COMMAND_SHOW_CHAT_PAGE);
+        if (isBanPageRequest) {
+            HashMap<String, User> userMap = getUserMap();
+            String userLog = null;
+            try {
+                userLog = (String) session.getAttribute("loginInput");
+            } catch (NullPointerException e) {
+                System.out.println("Error");
+            }
+
+            if (userLog != null) {
+                User sessionUser = userMap.get(userLog);
+                if (sessionUser != null && sessionUser.getUserType() != UserType.ADMIN) {
+                    httpResponse.sendRedirect(COMMAND_SHOW_CHAT_PAGE);
+                    return;
+                }
+            }
         }
         filterChain.doFilter(servletRequest, servletResponse);
 

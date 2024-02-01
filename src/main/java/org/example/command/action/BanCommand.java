@@ -18,7 +18,6 @@ public class BanCommand implements Command {
         String userLogin = request.getParameter("userLogin");
         HashMap<String, User> userMap = getUserMap();
 
-
         if (userMap.containsKey(userLogin)) {
             User bannedUser = userMap.get(userLogin);
             if (!bannedUser.isBanned()) {
@@ -27,7 +26,6 @@ public class BanCommand implements Command {
                 bannedUser.setBanned(false);
             }
         }
-
         return new RedirectResult(COMMAND_SHOW_BAN_PAGE);
     }
 }

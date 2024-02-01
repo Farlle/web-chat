@@ -1,12 +1,11 @@
 package org.example.command.show;
 
 import org.example.command.Command;
+import org.example.data.Message;
 import org.example.result.ForwardResult;
 import org.example.result.Result;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,7 +28,7 @@ public class ShowChatPageCommand implements Command {
         }
 
         messages.add(message);
-
+        response.setIntHeader("Refresh", 10);
         return new ForwardResult(PAGE_CHAT);
     }
 }
