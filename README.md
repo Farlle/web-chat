@@ -4,6 +4,8 @@
 
 -Xdebug -Xrunjdwp:transport=dt_socket,address=8080,server=y,suspend=y
 
+ДЗ web-chat от 27.01 Жердев Александр
+
 для запуска **mvn jetty:run**
 
 **админ: login: sashok, password: 123** 
