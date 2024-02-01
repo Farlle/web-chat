@@ -4,7 +4,7 @@
 
 -Xdebug -Xrunjdwp:transport=dt_socket,address=8080,server=y,suspend=y
 
-для запуска mvn **jetty:run**
+для запуска **mvn jetty:run**
 
 **админ: login: sashok, password: 123** 
 
