@@ -4,6 +4,7 @@ import org.example.command.Command;
 import org.example.data.Message;
 import org.example.result.ForwardResult;
 import org.example.result.Result;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
@@ -21,10 +22,11 @@ public class ShowChatPageCommand implements Command {
 
         Message message = new Message(user, text);
         List<Message> messages = (List<Message>) request.getServletContext().getAttribute("messages");
-
-        if (messages == null) {
-            messages = new ArrayList<>();
-            request.getServletContext().setAttribute("messages", messages);
+        synchronized (request.getServletContext()) {
+            if (messages == null) {
+                messages = new ArrayList<>();
+                request.getServletContext().setAttribute("messages", messages);
+            }
         }
 
         messages.add(message);
